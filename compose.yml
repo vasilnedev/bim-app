@@ -1,0 +1,153 @@
+# This is a Docker Compose file
+# Sample usage: docker compose up
+
+volumes:
+  neo4j-vol:
+  minio-vol:
+  node-red-vol:
+    driver: local
+    driver_opts:
+      type: none
+      device: "$PWD/node-red"
+      o: bind
+  bim-app-vol:
+    driver: local
+    driver_opts:
+      type: none
+      device: "$PWD/bim-app"
+      o: bind
+  bim-proxy-vol:
+    driver: local
+    driver_opts:
+      type: none
+      device: "$PWD/bim-proxy"
+      o: bind
+  mosquitto-config-vol:
+    driver: local
+    driver_opts:
+      type: none
+      device: "$PWD/mosquitto/config"
+      o: bind
+
+services:
+  neo4j:
+    image: neo4j
+    restart: always
+    
+    environment:
+    - NEO4J_AUTH=none
+    - NEO4J_PLUGINS=["graph-data-science"]
+
+    ports:
+    - published: 7474
+      target: 7474
+    - published: 7687
+      target: 7687
+    
+    volumes:
+    - type: volume
+      source: neo4j-vol
+      target: /data
+
+  minio:
+    image: minio/minio
+    restart: always
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+    environment:
+      - MINIO_ROOT_USER=myminioadmin
+      - MINIO_ROOT_PASSWORD=myminioadmin
+
+    command: minio server /data --console-address ":9001"
+
+    ports:
+      - published: 9000
+        target: 9000
+      - published: 9001
+        target: 9001
+
+    volumes:
+    - type: volume
+      source: minio-vol
+      target: /data
+
+  node-red:
+    image: nodered/node-red
+    restart: always
+    environment:
+      - NODE_ENV=production
+
+    ports:
+      - published: 1880
+        target: 1880
+
+    volumes:
+    - type: volume
+      source: node-red-vol
+      target: /data
+
+  bim-app:
+    image: node
+    working_dir: /usr/src/app
+    environment:
+      - NODE_ENV=development
+    command: "npm run dev"
+    restart: always
+
+    ports:
+      - published: 5173
+        target: 5173
+
+    volumes:
+    - type: volume
+      source: bim-app-vol
+      target: /usr/src/app
+
+  bim-proxy:
+    image: node
+    working_dir: /usr/src/app
+    environment:
+      - NODE_ENV=production
+    command: "node index.js"
+    restart: always
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+    ports:
+      - published: 3000
+        target: 3000
+
+    volumes:
+    - type: volume
+      source: bim-proxy-vol
+      target: /usr/src/app
+
+  mqtt:
+    image: eclipse-mosquitto
+    restart: always
+
+    ports:
+      - published: 1883
+        target: 1883
+
+    volumes:
+    - type: volume
+      source: mosquitto-config-vol
+      target: /mosquitto/config
+
+  tika:
+    image: apache/tika
+    restart: always
+
+    ports:
+      - published: 9998
+        target: 9998

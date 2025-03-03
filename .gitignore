@@ -1,0 +1,16 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+.npm/
+
+# Build directories
+dist/
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Linux files
+.bash_history

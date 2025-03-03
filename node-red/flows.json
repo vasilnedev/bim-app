@@ -1,0 +1,250 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "b2b8def1ad080bc7",
+        "type": "ui-base",
+        "name": "My Dashboard",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control",
+            "ui-text-input",
+            "ui-form",
+            "ui-number-input",
+            "ui-file-input",
+            "ui-button",
+            "ui-button-group",
+            "ui-dropdown",
+            "ui-radio-group",
+            "ui-slider",
+            "ui-switch",
+            "ui-text",
+            "ui-table",
+            "ui-chart",
+            "ui-gauge",
+            "ui-audio",
+            "ui-markdown",
+            "ui-template"
+        ],
+        "showPathInSidebar": false,
+        "navigationStyle": "default",
+        "titleBarStyle": "default"
+    },
+    {
+        "id": "d4c11795f2eb2d96",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094ce",
+            "bgPage": "#ffffff",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "d3024e84ad5064e7",
+        "type": "ui-page",
+        "name": "Page 1",
+        "ui": "b2b8def1ad080bc7",
+        "path": "/page1",
+        "icon": "star",
+        "layout": "grid",
+        "theme": "aedf43666f17c669",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "ec7c2c59cdcf65cf",
+        "type": "ui-group",
+        "name": "Group 1",
+        "page": "d3024e84ad5064e7",
+        "width": "12",
+        "height": "1",
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "cafa20a91deeef1a",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mqtt",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "5",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "20c9b7c8d72a922b",
+        "type": "minio-config",
+        "name": "MinIO",
+        "host": "minio",
+        "port": "9000",
+        "useSsl": false
+    },
+    {
+        "id": "aedf43666f17c669",
+        "type": "ui-theme",
+        "name": "Theme 2",
+        "colors": {
+            "surface": "#716060",
+            "primary": "#0094ce",
+            "bgPage": "#000000",
+            "groupBg": "#000000",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "7694326e01ec7d90",
+        "type": "ui-text",
+        "z": "f6f2187d.f17ca8",
+        "group": "ec7c2c59cdcf65cf",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Message",
+        "label": "message",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "x": 640,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "85ccfb0fd9235532",
+        "type": "ui-form",
+        "z": "f6f2187d.f17ca8",
+        "name": "Message",
+        "group": "ec7c2c59cdcf65cf",
+        "label": "",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Message",
+                "key": "message",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "message": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "clear",
+        "resetOnSubmit": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "passthru": false,
+        "dropdownOptions": [],
+        "x": 180,
+        "y": 100,
+        "wires": [
+            [
+                "27273267a24ebc9b"
+            ]
+        ]
+    },
+    {
+        "id": "27273267a24ebc9b",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Parse message",
+        "func": "let newMsg  = msg\nnewMsg.payload = msg.payload.message\nreturn newMsg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 100,
+        "wires": [
+            [
+                "7694326e01ec7d90"
+            ]
+        ]
+    }
+]
