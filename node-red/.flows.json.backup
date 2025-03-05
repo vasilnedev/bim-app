@@ -246,40 +246,5 @@
                 "7694326e01ec7d90"
             ]
         ]
-    },
-    {
-        "id": "314db58ebca122e9",
-        "type": "http in",
-        "z": "f6f2187d.f17ca8",
-        "name": "get /models",
-        "url": "/models/:file",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 190,
-        "y": 220,
-        "wires": [
-            [
-                "43a2f5493918b193"
-            ]
-        ]
-    },
-    {
-        "id": "43a2f5493918b193",
-        "type": "http-proxy",
-        "z": "f6f2187d.f17ca8",
-        "name": "MinIO",
-        "url": "http://minio:9000/models/small.ifc",
-        "incomingTimeout": 0,
-        "outgoingTimeout": 0,
-        "changeOrigin": false,
-        "preserveHeaderKeyCase": false,
-        "verifyCertificates": false,
-        "followRedirects": false,
-        "toProxy": false,
-        "xfwd": false,
-        "x": 410,
-        "y": 220,
-        "wires": []
     }
 ]
