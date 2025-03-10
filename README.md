@@ -1,4 +1,4 @@
-# Bim App Full Stack
+# Bim App Stack
 
 This repository contains a conterised Bim App. It includes:
 * front-end development (bim-app) folder and server (Vite)
@@ -10,8 +10,8 @@ This repository contains a conterised Bim App. It includes:
 
 ## Project Structure
 
-### Setup
-
+### Setup & Requirements
+- requirements: Docker, Docker Compose and Bash
 - `setup.sh`: Shell sctript to setup the application.
 
 ### Build and Deployment
