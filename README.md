@@ -1,14 +1,18 @@
 # Bim App Full Stack
 
-This repository creates a set of Docker Containers for development of a conterised IFC.js Bim App. It includs:
-* front-end development folde and server (Vite)
-* MinIO for app deployment and models repository
-* Express proxy server to access the MinIO deployment
+This repository contains a conterised Bim App. It includes:
+* front-end development (bim-app) folder and server (Vite)
+* MinIO - Object storage for application deployment and models
+* Express (bim-proxy) proxy server to access the MinIO deployment
 * Neo4j server for Graph Database 
-* Node-RED and Mosquitto MQTT Containers for further development of IoT 
+* Node-RED (node-red) and Mosquitto MQTT Containers for further development of IoT 
 * Appache Tika for converting PDF to text
 
 ## Project Structure
+
+### Setup
+
+- `setup.sh`: Shell sctript to setup the application.
 
 ### Build and Deployment
 
