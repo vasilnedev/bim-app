@@ -36,7 +36,7 @@ services:
     
     environment:
     - NEO4J_AUTH=none
-    - NEO4J_PLUGINS=["graph-data-science"]
+    - NEO4J_PLUGINS=["apoc","graph-data-science"]
 
     ports:
     - published: 7474

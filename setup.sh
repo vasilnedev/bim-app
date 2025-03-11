@@ -15,15 +15,15 @@ docker run -v $(pwd)/bim-app:/usr/src/app -w /usr/src/app node npm install
 docker run -v $(pwd)/bim-proxy:/usr/src/app -w /usr/src/app node npm install
 docker run -v $(pwd)/node-red:/data -w /data node npm install
 
+echo "Starting Docker containers..."
+docker compose up -d
+
 echo "Create manually the MinIO buckets:"
 echo "1. Open http://localhost:9000"
 echo "2. Create buckets named 'bim-app' and 'models'"
 echo "3. Upload the samples from '/sample-models' to 'models' bucket"
 echo "4. Grant Public Access to both 'bim-app' and 'models' buckets"
-
-echo "Starting Docker containers..."
-read -p "Continue? (Y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
-docker compose up -d
+read -p "When ready select Y to continue? (Y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
 
 echo "Building the BIM App..."
 docker exec bim-app-bim-app-1 npm run build
