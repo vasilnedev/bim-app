@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "A. Grant full access to node-red folder..."
+echo "A. Grant full access to node-red folder to allow access for Node-Red server..."
 chmod 777 node-red
 
 echo "B. Pull Docker images..."
@@ -18,14 +18,18 @@ docker run -v $(pwd)/node-red:/data -w /data node npm install
 echo "D. Starting Docker containers..."
 docker compose up -d
 
-echo "E. Create manually the MinIO buckets:"
+echo "E. Create MinIO buckets:"
+docker exec bim-app-minio-1 mc mb bim-app
+docker exec bim-app-minio-1 mc mb models
+docker exec bim-app-minio-1 mc mb documents
+
+echo "F. Grant public access to all folders and upload sample model files:"
 echo "1. Open http://localhost:9000"
-echo "2. Create buckets named 'bim-app' and 'models'"
 echo "3. Upload the samples from '/sample-models' to 'models' bucket"
-echo "4. Grant Public Access to both 'bim-app' and 'models' buckets"
+echo "4. Grant Public Access to all buckets buckets"
 read -p "When ready select Y to continue? (Y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
 
-echo "F. Building the BIM App..."
+echo "G. Building the BIM App..."
 docker exec bim-app-bim-app-1 npm run build
 docker exec bim-app-bim-app-1 npm run deploy
 
