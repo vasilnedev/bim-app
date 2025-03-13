@@ -23,7 +23,7 @@ echo "E. Create MinIO buckets, copy sample models and build the app ..."
 docker exec -w /data bim-app-minio-1 mc mb bim-app
 docker exec -w /data bim-app-minio-1 mc mb models
 docker exec -w /data bim-app-minio-1 mc mb documents
-docker exec -v $(pwd)/sample-models:/home bim-app-minio-1 mc cp --recursive /home /data/models
+docker exec bim-app-bim-app-1 npm run sample-models
 docker exec bim-app-bim-app-1 npm run build
 docker exec bim-app-bim-app-1 npm run deploy
 

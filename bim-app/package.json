@@ -7,7 +7,8 @@
     "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "node ./scripts/deploy.js"
+    "deploy": "node ./scripts/deploy.js",
+    "sample-models": "node ./scripts/sample-models.js"
   },
   "dependencies": {
     "@thatopen/components": "^2.4.4",
