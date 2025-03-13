@@ -16,6 +16,11 @@ const allowOnlyGet = (req, res, next) => {
   next();
 };
 
+// Redirect the main route to /bim-app
+app.get('/', (req, res) => {
+  res.redirect('/bim-app/index.html');
+});
+
 // Proxy for /bim-app
 app.use('/bim-app', 
   allowOnlyGet, 

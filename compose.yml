@@ -8,25 +8,25 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: "$PWD/node-red"
+      device: $PWD/node-red
       o: bind
   bim-app-vol:
     driver: local
     driver_opts:
       type: none
-      device: "$PWD/bim-app"
+      device: $PWD/bim-app
       o: bind
   bim-proxy-vol:
     driver: local
     driver_opts:
       type: none
-      device: "$PWD/bim-proxy"
+      device: $PWD/bim-proxy
       o: bind
   mosquitto-config-vol:
     driver: local
     driver_opts:
       type: none
-      device: "$PWD/mosquitto/config"
+      device: $PWD/mosquitto/config
       o: bind
 
 services:
