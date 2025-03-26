@@ -4,29 +4,17 @@
 volumes:
   neo4j-vol:
   minio-vol:
-  node-red-vol:
-    driver: local
-    driver_opts:
-      type: none
-      device: $PWD/node-red
-      o: bind
   bim-app-vol:
     driver: local
     driver_opts:
       type: none
       device: $PWD/bim-app
       o: bind
-  bim-proxy-vol:
+  bim-server-vol:
     driver: local
     driver_opts:
       type: none
-      device: $PWD/bim-proxy
-      o: bind
-  mosquitto-config-vol:
-    driver: local
-    driver_opts:
-      type: none
-      device: $PWD/mosquitto/config
+      device: $PWD/bim-server
       o: bind
 
 services:
@@ -76,21 +64,6 @@ services:
       source: minio-vol
       target: /data
 
-  node-red:
-    image: nodered/node-red
-    restart: always
-    environment:
-      - NODE_ENV=production
-
-    ports:
-      - published: 1880
-        target: 1880
-
-    volumes:
-    - type: volume
-      source: node-red-vol
-      target: /data
-
   bim-app:
     image: node
     working_dir: /usr/src/app
@@ -108,19 +81,13 @@ services:
       source: bim-app-vol
       target: /usr/src/app
 
-  bim-proxy:
+  bim-server:
     image: node
     working_dir: /usr/src/app
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=development
     command: "node index.js"
     restart: always
-
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
-      interval: 30s
-      timeout: 20s
-      retries: 3
 
     ports:
       - published: 3000
@@ -128,21 +95,8 @@ services:
 
     volumes:
     - type: volume
-      source: bim-proxy-vol
+      source: bim-server-vol
       target: /usr/src/app
-
-  mqtt:
-    image: eclipse-mosquitto
-    restart: always
-
-    ports:
-      - published: 1883
-        target: 1883
-
-    volumes:
-    - type: volume
-      source: mosquitto-config-vol
-      target: /mosquitto/config
 
   tika:
     image: apache/tika

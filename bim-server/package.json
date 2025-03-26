@@ -1,0 +1,19 @@
+{
+  "name": "bim-server",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "BIM App backend service to provide access to database and data processing.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Node.js",
+    "Express"
+  ],
+  "author": "Vasil Nedev",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

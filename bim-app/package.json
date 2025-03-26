@@ -1,8 +1,8 @@
 {
-  "name": "app",
-  "private": true,
+  "name": "bim-app",
   "version": "0.0.0",
   "type": "module",
+  "description": "BIM App frontend application to provide UI and interaction.",
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
