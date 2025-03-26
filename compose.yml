@@ -68,7 +68,7 @@ services:
     image: node
     working_dir: /usr/src/app
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
     command: "npm run dev"
     restart: always
 
@@ -85,7 +85,7 @@ services:
     image: node
     working_dir: /usr/src/app
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
     command: "node index.js"
     restart: always
 

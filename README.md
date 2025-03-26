@@ -1,11 +1,10 @@
 # Bim App Stack
 
 This repository contains a conterised Bim App. It includes:
-* front-end development (bim-app) folder and server (Vite)
-* MinIO - Object storage for application deployment and models
-* Express (bim-proxy) proxy server to access the MinIO deployment
+* bim-app - frontend UI and functionality and development server (Vite)
+* bim-server - a Node.js Express API server to access Neo4j database and data manipulation
+* MinIO - object storage for application deployment, BIM models and documents
 * Neo4j server for Graph Database 
-* Node-RED (node-red) and Mosquitto MQTT Containers for further development of IoT 
 * Appache Tika for converting PDF to text
 
 ## Project Structure
@@ -16,7 +15,7 @@ This repository contains a conterised Bim App. It includes:
 
 ### Build and Deployment
 
-- `compose.yml`: Docker Compose file for setting up the environment.
+- `compose.yml`: Docker Compose file.
 - `build.sh`: Shell script to build the bim-app.
 
 ## Bim App
@@ -31,21 +30,13 @@ The `bim-app` directory contains the front-end application built with Vite.
 
 - `vite.config.js`: Configuration file for Vite.
 
-## Bim Proxy
+## Bim Server
 
-The `bim-proxy` directory contains the proxy Express server.
+The `bim-server` directory contains the API Express server.
 
 ### Entry Point
 
 - `index.js`: Main entry point for the proxy server.
-
-## Node-RED
-
-The `node-red` directory contains the Node-RED configuration files and dependencies.
-
-## Mosquitto
-
-The `mosquitto` directory contains the configuration for the Mosquitto MQTT broker.
 
 ## Sample Models
 
